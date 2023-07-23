@@ -1,7 +1,7 @@
 from datetime import date, timedelta
 import pytest
 
-from model import Batch, OrderLine
+from domain.model import Batch, OrderLine
 
 #TODO: move this to test setup along with test_allocate.py
 today = date.today()

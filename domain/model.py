@@ -63,7 +63,6 @@ class Batch:
         return self.sku == diff_line.sku and self.available_quantity >= diff_line.quantity
     
 
-
 def allocate(line: OrderLine, batches: List[Batch]) -> str:
     """
     Prefer

@@ -4,13 +4,13 @@ This repo contains python code LOOSLY demonstrating the examples shown in the "A
 
 The main difference between the available source code of the book and this repo is the use of fastapi as the server framework and the use of match case in instances of cascading control flow (e.g. the event bus).
 
-The commits will reflect my journey going back through the book and should roughly correlate with the chapters of the book (taged commits at the end of each chapter). However, I may extend the book and integrate other more opinionated pieces (e.g. NoSQL with boto3 and AWS Dynamo).
+The commits will reflect my journey going back through the book and will roughly follow the book. However, I may extend the book and integrate other more opinionated pieces (e.g. NoSQL with boto3 and AWS Dynamo).
 
 ## Contributions
 
 Before opening a pull request or working on this repo's code, please open an issue in the github project page. This helps me coordinate who is working on what and start a conversation about if a contribution is in-scope for this repo. Thank you and looking forward to hearing from you.
 
-Note: this repo specifically is for my own learning and will have some opinionate choices (such as development container vs virtual environment and only supporting Python 3.11).
+Note: this repo specifically is for my own learning and will have some opinionated choices (such as development container vs virtual environment and only supporting Python 3.11).
 
 ## Style Guide
 This repo will incrementally move towards the google python style guide and demonstrate tooling to help keep code formatted and conformant to https://google.github.io/styleguide/pyguide.html 
