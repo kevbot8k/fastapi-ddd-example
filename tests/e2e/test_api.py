@@ -1,9 +1,13 @@
 import uuid
 import pytest
-import requests
 
 import config
 
+from fastapi.testclient import TestClient
+
+from entrypoints.app import app
+
+client = TestClient(app)
 
 def random_suffix():
     return uuid.uuid4().hex[:6]
@@ -23,7 +27,7 @@ def random_orderid(name=""):
 
 def post_to_add_batch(ref, sku, qty, eta):
     url = config.get_api_url()
-    r = requests.post(
+    r = client.post(
         f"{url}/add_batch", json={"ref": ref, "sku": sku, "qty": qty, "eta": eta}
     )
     assert r.status_code == 201
@@ -40,7 +44,7 @@ def test_happy_path_returns_201_and_allocated_batch():
     data = {"orderid": random_orderid(), "sku": sku, "qty": 3}
 
     url = config.get_api_url()
-    r = requests.post(f"{url}/allocate", json=data)
+    r = client.post(f"{url}/allocate", json=data)
 
     assert r.status_code == 201
     assert r.json()["batchref"] == earlybatch
@@ -52,6 +56,6 @@ def test_unhappy_path_returns_400_and_error_message():
     unknown_sku, orderid = random_sku(), random_orderid()
     data = {"orderid": orderid, "sku": unknown_sku, "qty": 20}
     url = config.get_api_url()
-    r = requests.post(f"{url}/allocate", json=data)
+    r = client.post(f"{url}/allocate", json=data)
     assert r.status_code == 400
     assert r.json()["message"] == f"Invalid sku {unknown_sku}"

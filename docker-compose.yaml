@@ -1,0 +1,39 @@
+version: "3"
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+      - dynamodb
+    environment:
+      - AWS_ACCESS_KEY_ID='DUMMYIDEXAMPLE'
+      - AWS_SECRET_ACCESS_KEY='DUMMYEXAMPLEKEY'
+      - DB_HOST=dynamodb
+      - DB_PASSWORD=abc123
+    volumes:
+      - ./:/src
+    ports:
+      - "5005:80"
+
+  postgres:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=allocation
+      - POSTGRES_PASSWORD=abc123
+    ports:
+      - "54321:5432"
+
+  dynamodb:
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    image: "amazon/dynamodb-local:latest"
+    container_name: dynamodb-local
+    ports:
+      - "8000:8000"
+    volumes:
+      - myapp:/home/dynamodblocal/data
+    working_dir: /home/dynamodblocal
+volumes:
+  myapp:
