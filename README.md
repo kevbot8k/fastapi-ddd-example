@@ -11,3 +11,6 @@ The commits will reflect my journey going back through the book and should rough
 Before opening a pull request or working on this repo's code, please open an issue in the github project page. This helps me coordinate who is working on what and start a conversation about if a contribution is in-scope for this repo. Thank you and looking forward to hearing from you.
 
 Note: this repo specifically is for my own learning and will have some opinionate choices (such as development container vs virtual environment and only supporting Python 3.11).
+
+## Style Guide
+This repo will incrementally move towards the google python style guide and demonstrate tooling to help keep code formatted and conformant to https://google.github.io/styleguide/pyguide.html 
